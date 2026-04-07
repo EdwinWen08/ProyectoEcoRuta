@@ -16,9 +16,12 @@ mongoose
 const PORT = process.env.PORT || 3000;
 
 //Routes CRUD
-app.use("/api/calificaciones", require("./routes/calificacionRoutes"));
-app.use("/api/cursos", require("./routes/cursoRoutes"));
-
+app.use("/api/roles", require("./routes/RolesRoutes"));
+app.use("/api/usuarios", require("./routes/UsuariosRoutes"));
+app.use("/api/materiales", require("./routes/MaterialesRoutes"));
+app.use("/api/configuraciones", require("./routes/configuracionesRoutes"));
+app.use("/api/notificaciones", require("./routes/notificacionesRoutes"));
+app.use("/api/favoritos", require("./routes/favoritosRoutes"));
 app.listen(PORT, () => {
   console.log(`Servidor ejecutadonse ${PORT}`);
 });
