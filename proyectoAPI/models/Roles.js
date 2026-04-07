@@ -5,7 +5,10 @@ const rolesSchema = new mongoose.Schema(
     Id: { type: String, required: true,},
     nombreRol: { type: String, required: true,},
     descripcion: { type: String, required: true },
-    estado: { type: String, required: true },
+    estado: 
+    { type: String,
+      enum: ["activo", "inactivo"], 
+      required: true },
     fechaRegistro: { type: Date, required: true },
   },
   { timestamps: false,}

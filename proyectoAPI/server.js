@@ -22,6 +22,9 @@ app.use("/api/materiales", require("./routes/MaterialesRoutes"));
 app.use("/api/configuraciones", require("./routes/configuracionesRoutes"));
 app.use("/api/notificaciones", require("./routes/notificacionesRoutes"));
 app.use("/api/favoritos", require("./routes/favoritosRoutes"));
+app.use("/api/puntosReciclaje", require("./routes/puntosReciclajeRoutes"));
+app.use("/api/rutas", require("./routes/rutasRoutes"));
+app.use("/api/camiones", require("./routes/camionesRoutes"));
 app.listen(PORT, () => {
   console.log(`Servidor ejecutadonse ${PORT}`);
 });
