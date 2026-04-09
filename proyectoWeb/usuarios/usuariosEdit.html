@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Editar Usuario</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <main class="container py-4">
+      <h1 class="mb-4">Editar Usuario</h1>
+
+      <form id="formularioUsuarioEdit">
+        <input type="hidden" id="mongoId" />
+
+        <div class="mb-3">
+          <label for="Id" class="form-label">Id</label>
+          <input type="text" class="form-control" name="Id" id="Id" placeholder="Ejemplo: usr013" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="nombreUsuario" class="form-label">Nombre de usuario</label>
+          <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" placeholder="Ejemplo: Juan Perez" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" class="form-control" name="correo" id="correo" placeholder="Ejemplo: juan@eco.com" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Telefono</label>
+          <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Ejemplo: 88880000" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="contrasena" class="form-label">Contrasena</label>
+          <input type="text" class="form-control" name="contrasena" id="contrasena" placeholder="Ingrese la contrasena" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="rolId" class="form-label">Rol Id</label>
+          <input type="text" class="form-control" name="rolId" id="rolId" placeholder="Ejemplo: rol005" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <select class="form-select" name="estado" id="estado" required>
+            <option value="">Seleccione una opcion</option>
+            <option value="activo">activo</option>
+            <option value="inactivo">inactivo</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="fechaRegistro" class="form-label">Fecha de registro</label>
+          <input type="date" class="form-control" name="fechaRegistro" id="fechaRegistro" placeholder="Seleccione una fecha" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a href="./usuarios.html" class="btn btn-danger">Cancelar</a>
+      </form>
+    </main>
+
+    <script>
+      $(document).ready(function () {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        $.get("http://localhost:3000/api/usuarios/" + id, function (usuario) {
+          $("#mongoId").val(usuario._id);
+          $("#Id").val(usuario.Id);
+          $("#nombreUsuario").val(usuario.nombreUsuario);
+          $("#correo").val(usuario.correo);
+          $("#telefono").val(usuario.telefono);
+          $("#contrasena").val(usuario.contrasena);
+          $("#rolId").val(usuario.rolId);
+          $("#estado").val(usuario.estado);
+          $("#fechaRegistro").val(usuario.fechaRegistro.split("T")[0]);
+
+        }).fail(function () {
+          alert("Error al cargar el usuario");
+          window.location.href = "./usuarios.html";
+        });
+
+        $("#formularioUsuarioEdit").submit(function (e) {
+          e.preventDefault();
+
+          let datos = {
+            Id: $("#Id").val(),
+            nombreUsuario: $("#nombreUsuario").val(),
+            correo: $("#correo").val(),
+            telefono: $("#telefono").val(),
+            contrasena: $("#contrasena").val(),
+            rolId: $("#rolId").val(),
+            estado: $("#estado").val(),
+            fechaRegistro: $("#fechaRegistro").val(),
+          };
+
+          $.ajax({
+            type: "PUT",
+            url: "http://localhost:3000/api/usuarios/" + id,
+            data: JSON.stringify(datos),
+            contentType: "application/json",
+            dataType: "json",
+            success: function () {
+              alert("Usuario actualizado");
+              window.location.href = "./usuarios.html";
+            },
+            error: function () {
+              alert("Error al actualizar los datos");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

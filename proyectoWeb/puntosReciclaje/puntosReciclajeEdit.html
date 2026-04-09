@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EcoRuta | Editar Punto de Reciclaje</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/indexStyles.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="collections-bar">
+            <div class="collections-inner">
+                <div class="col-group col-group-brand" id="inicio">
+                    <span class="col-group-label"><span class="dot dot-green"></span> INICIO</span>
+                    <div class="col-cards">
+                        <a href="../../index.html" class="col-card col-card-brand">EcoRuta</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="acceso">
+                    <span class="col-group-label"><span class="dot dot-green"></span> ACCESO</span>
+                    <div class="col-cards">
+                        <a href="../roles/roles.html" class="col-card">Roles</a>
+                        <a href="../usuarios/usuarios.html" class="col-card">Usuarios</a>
+                        <a href="../configuraciones/configuraciones.html" class="col-card">Configuraciones</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="reciclaje">
+                    <span class="col-group-label"><span class="dot dot-blue"></span> RECICLAJE</span>
+                    <div class="col-cards">
+                        <a href="./puntosReciclaje.html" class="col-card">Puntos</a>
+                        <a href="../materiales/materiales.html" class="col-card">Materiales</a>
+                        <a href="../favoritos/favoritos.html" class="col-card">Favoritos</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="logistica">
+                    <span class="col-group-label"><span class="dot dot-orange"></span> LOGISTICA</span>
+                    <div class="col-cards">
+                        <a href="../rutas/rutas.html" class="col-card">Rutas</a>
+                        <a href="../camiones/camiones.html" class="col-card">Camiones</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="comunicacion">
+                    <span class="col-group-label"><span class="dot dot-red"></span> COMUNICACION</span>
+                    <div class="col-cards">
+                        <a href="../notificaciones/notificaciones.html" class="col-card">Notificaciones</a>
+                        <a href="../eventos/eventos.html" class="col-card">Eventos</a>
+                        <a href="../comentarios/comentarios.html" class="col-card">Comentarios</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="reportes">
+                    <span class="col-group-label"><span class="dot dot-purple"></span> REPORTES</span>
+                    <div class="col-cards">
+                        <a href="../reportes/reportes.html" class="col-card">Reportes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page">
+        <header class="banner">
+            <div class="banner-left">
+                <span class="banner-badge">COLECCION</span>
+                <h1 class="banner-title">PUNTOS DE RECICLAJE</h1>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="data-panel">
+                <h2 class="data-title">Editar Punto de Reciclaje</h2>
+                <form id="formulario">
+                    <input type="hidden" id="mongoId" />
+                    <div class="mb-3">
+                        <label for="Id" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="Id" placeholder="Id del punto" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombrePunto" class="form-label">Nombre del Punto</label>
+                        <input type="text" class="form-control" id="nombrePunto" placeholder="Nombre del punto" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="provincia" class="form-label">Provincia</label>
+                        <input type="text" class="form-control" id="provincia" placeholder="Provincia" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="canton" class="form-label">Canton</label>
+                        <input type="text" class="form-control" id="canton" placeholder="Canton" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" id="direccion" placeholder="Direccion" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select class="form-select" id="estado">
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefonoContacto" class="form-label">Telefono de Contacto</label>
+                        <input type="text" class="form-control" id="telefonoContacto" placeholder="Telefono" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="materialesPermitidos" class="form-label">Materiales Permitidos</label>
+                        <input type="text" class="form-control" id="materialesPermitidos" placeholder="Materiales separados por coma" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="horarioAtencion" class="form-label">Horario de Atencion</label>
+                        <input type="text" class="form-control" id="horarioAtencion" placeholder="Horario de atencion" />
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <a href="./puntosReciclaje.html" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        $.get("http://localhost:3000/api/puntosReciclaje/" + id, function (data) {
+            $("#mongoId").val(data._id);
+            $("#Id").val(data.Id);
+            $("#nombrePunto").val(data.nombrePunto);
+            $("#provincia").val(data.provincia);
+            $("#canton").val(data.canton);
+            $("#direccion").val(data.direccion);
+            $("#estado").val(data.estado);
+            $("#telefonoContacto").val(data.telefonoContacto);
+            $("#materialesPermitidos").val(data.materialesPermitidos.join(", "));
+            $("#horarioAtencion").val(data.horarioAtencion);
+        });
+
+        $("#formulario").on("submit", function (e) {
+            e.preventDefault();
+
+            const materialesRaw = $("#materialesPermitidos").val();
+            const materialesArr = materialesRaw.split(",").map(m => m.trim()).filter(m => m !== "");
+
+            const dato = {
+                Id: $("#Id").val(),
+                nombrePunto: $("#nombrePunto").val(),
+                provincia: $("#provincia").val(),
+                canton: $("#canton").val(),
+                direccion: $("#direccion").val(),
+                estado: $("#estado").val(),
+                telefonoContacto: $("#telefonoContacto").val(),
+                materialesPermitidos: materialesArr,
+                horarioAtencion: $("#horarioAtencion").val(),
+            };
+
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost:3000/api/puntosReciclaje/" + id,
+                contentType: "application/json",
+                data: JSON.stringify(dato),
+                success: function () {
+                    alert("Punto actualizado correctamente");
+                    window.location.href = "./puntosReciclaje.html";
+                },
+                error: function () {
+                    alert("Error al actualizar el punto");
+                    window.location.href = "./puntosReciclaje.html";
+                },
+            });
+        });
+    </script>
+</body>
+
+</html>

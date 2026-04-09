@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Reportes = require("../models/Reportes");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const data = await Reportes.findById(req.params.id);
+  res.json(data);
+});
+
 // GET - listar reportes
 router.get("/", async (req, res) => {
   const reportes = await Reportes.find();

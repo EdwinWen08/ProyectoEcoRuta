@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Crear Configuracion</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <main class="container py-4">
+        <h1 class="mb-4">Crear Configuracion</h1>
+
+        <form id="formularioConfiguracion">
+            <div class="mb-3">
+                <label for="Id" class="form-label">Id</label>
+                <input type="text" class="form-control" name="Id" id="Id" placeholder="Ejemplo: cfg001" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="clave" class="form-label">Clave</label>
+                <input type="text" class="form-control" name="clave" id="clave"
+                    placeholder="Ejemplo: tiempoEspera" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="valor" class="form-label">Valor</label>
+                <input type="text" class="form-control" name="valor" id="valor"
+                    placeholder="Ejemplo: 30" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+        </form>
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            $("#formularioConfiguracion").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/api/configuraciones/",
+                    data: JSON.stringify((function () {
+                        let objetodatos = {
+                            Id: $("#Id").val(),
+                            clave: $("#clave").val(),
+                            valor: $("#valor").val(),
+                        };
+
+                        return objetodatos;
+                    })()),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function () {
+                        alert("Almacenando datos");
+                        window.location.href = "./configuraciones.html";
+                    },
+                    error: function () {
+                        alert("Error al guardar los datos");
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

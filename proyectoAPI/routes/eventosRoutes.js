@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Eventos = require("../models/Eventos");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const data = await Eventos.findById(req.params.id);
+  res.json(data);
+});
+
 // GET - listar eventos
 router.get("/", async (req, res) => {
   const eventos = await Eventos.find();

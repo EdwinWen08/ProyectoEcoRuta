@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Notificaciones = require("../models/Notificaciones");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const data = await Notificaciones.findById(req.params.id);
+  res.json(data);
+});
+
 // GET
 router.get("/", async (req, res) => {
   const data = await Notificaciones.find();

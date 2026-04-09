@@ -8,7 +8,9 @@ const usuariosSchema = new mongoose.Schema(
     telefono: { type: String, required: true,},
     contrasena: { type: String, required: true,},
     rolId: { type: String, required: true,},
-    estado: { type: String, required: true },
+    estado: {     type: String, 
+      enum: ["activo","inactivo"], 
+      required: true  },
     fechaRegistro: { type: Date, required: true },
   },
   { timestamps: false,}

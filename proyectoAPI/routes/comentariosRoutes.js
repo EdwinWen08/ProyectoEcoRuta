@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Comentarios = require("../models/Comentarios");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const data = await Comentarios.findById(req.params.id);
+  res.json(data);
+});
+
 // GET - listar comentarios
 router.get("/", async (req, res) => {
   const comentarios = await Comentarios.find();

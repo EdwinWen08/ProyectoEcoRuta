@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Favoritos = require("../models/Favoritos");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const data = await Favoritos.findById(req.params.id);
+  res.json(data);
+});
+
 // GET - listar favoritos
 router.get("/", async (req, res) => {
   const favoritos = await Favoritos.find();

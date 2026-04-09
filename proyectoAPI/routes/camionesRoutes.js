@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Camiones = require("../models/Camiones");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const data = await Camiones.findById(req.params.id);
+  res.json(data);
+});
+
 // GET - listar camiones
 router.get("/", async (req, res) => {
   const camiones = await Camiones.find();

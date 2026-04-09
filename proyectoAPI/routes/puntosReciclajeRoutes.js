@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const PuntosReciclaje = require("../models/PuntosReciclaje");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const data = await PuntosReciclaje.findById(req.params.id);
+  res.json(data);
+});
+
 // GET - listar puntos
 router.get("/", async (req, res) => {
   const puntos = await PuntosReciclaje.find();

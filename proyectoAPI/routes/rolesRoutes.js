@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Roles = require("../models/Roles");
 
+// GET por id
+router.get("/:id", async (req, res) => {
+  const rol = await Roles.findById(req.params.id);
+  res.json(rol);
+});
+
 // GET - listar roles
 router.get("/", async (req, res) => {
   const roles = await Roles.find();

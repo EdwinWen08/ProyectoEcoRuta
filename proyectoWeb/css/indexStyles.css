@@ -1,0 +1,243 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--bs-font-sans-serif);
+  background: #f0f0ec;
+  color: #1a1a1a;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(14, 46, 26, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: block;
+  width: 100%;
+}
+
+.collections-bar {
+  background: rgba(8, 30, 18, 0.88);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  width: 100%;
+}
+
+.collections-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem 1.1rem;
+}
+
+.col-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.col-group-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(180, 230, 200, 0.65);
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-green { background: #2fb86e; }
+.dot-blue { background: #3a82f7; }
+.dot-orange { background: #f59e42; }
+.dot-red { background: #e84545; }
+.dot-purple { background: #9b64e8; }
+
+.col-cards {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.col-card {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  padding: 0.38rem 0.65rem;
+  text-decoration: none;
+  color: rgba(215, 245, 225, 0.88);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.col-card:hover {
+  background: rgba(47, 184, 110, 0.18);
+  color: #c8f5d8;
+}
+
+.col-card-brand {
+  font-weight: 700;
+  color: #e7f8ee;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.4rem 1.6rem 3rem;
+}
+
+.banner {
+  background: #0e2e1a;
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+  color: #e8f5ea;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.banner-badge {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 0.22rem 0.52rem;
+  margin-bottom: 0.8rem;
+  color: rgba(215, 245, 225, 0.8);
+}
+
+.banner-title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #e8f5ea;
+}
+
+.banner-sub {
+  margin-top: 0.65rem;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: rgba(210, 240, 220, 0.75);
+  max-width: 48ch;
+}
+
+.banner-image-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  max-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.tips-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.tips-sub {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 2.5rem;
+}
+
+.tip-card {
+  background: #fff;
+  border: 1px solid #e2e2de;
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+.tip-card h3 {
+  font-size: 0.97rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tip-card p {
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .banner {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .banner-image {
+    min-height: 200px;
+    max-height: 230px;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 1rem 1rem 2.5rem;
+  }
+
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .collections-inner {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+}

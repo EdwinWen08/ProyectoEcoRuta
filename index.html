@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoRuta | Sistema de Gestion</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="proyectoWeb/css/indexStyles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="collections-bar">
+      <div class="collections-inner">
+        <div class="col-group col-group-brand" id="inicio">
+          <span class="col-group-label"><span class="dot dot-green"></span> INICIO</span>
+          <div class="col-cards">
+            <a href="#" class="col-card col-card-brand">EcoRuta</a>
+          </div>
+        </div>
+        <div class="col-group" id="acceso">
+          <span class="col-group-label"><span class="dot dot-green"></span> ACCESO</span>
+          <div class="col-cards">
+            <a href="proyectoWeb/roles/roles.html" class="col-card">Roles</a>
+            <a href="proyectoWeb/usuarios/usuarios.html" class="col-card">Usuarios</a>
+            <a href="proyectoWeb/configuraciones/configuraciones.html" class="col-card">Configuraciones</a>
+          </div>
+        </div>
+        <div class="col-group" id="reciclaje">
+          <span class="col-group-label"><span class="dot dot-blue"></span> RECICLAJE</span>
+          <div class="col-cards">
+            <a href="proyectoWeb/puntosReciclaje/puntosReciclaje.html" class="col-card">Puntos</a>
+            <a href="proyectoWeb/materiales/materiales.html" class="col-card">Materiales</a>
+            <a href="proyectoWeb/favoritos/favoritos.html" class="col-card">Favoritos</a>
+          </div>
+        </div>
+        <div class="col-group" id="logistica">
+          <span class="col-group-label"><span class="dot dot-orange"></span> LOGÍSTICA</span>
+          <div class="col-cards">
+            <a href="proyectoWeb/rutas/rutas.html" class="col-card">Rutas</a>
+            <a href="proyectoWeb/camiones/camiones.html" class="col-card">Camiones</a>
+          </div>
+        </div>
+        <div class="col-group" id="comunicacion">
+          <span class="col-group-label"><span class="dot dot-red"></span> COMUNICACIÓN</span>
+          <div class="col-cards">
+            <a href="proyectoWeb/notificaciones/notificaciones.html" class="col-card">Notificaciones</a>
+            <a href="proyectoWeb/eventos/eventos.html" class="col-card">Eventos</a>
+            <a href="proyectoWeb/comentarios/comentarios.html" class="col-card">Comentarios</a>
+          </div>
+        </div>
+        <div class="col-group" id="reportes">
+          <span class="col-group-label"><span class="dot dot-purple"></span> REPORTES</span>
+          <div class="col-cards">
+            <a href="proyectoWeb/reportes/reportes.html" class="col-card">Reportes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="page">
+    <header class="banner">
+      <div class="banner-left">
+        <span class="banner-badge">SISTEMA DE GESTIÓN</span>
+        <h1 class="banner-title">ECORUTA</h1>
+        <p class="banner-sub">
+          Los usuarios pueden explorar los puntos de reciclaje disponibles,
+          conocer que materiales reciben y planificar su ruta.
+        </p>
+      </div>
+      <div class="banner-image-wrap">
+        <img class="banner-image"
+          src="https://www.reciclajecontemar.es/wp-content/uploads/reciclaje-de-basura-como-reciclar-de-manera-efectiva.jpg"
+          alt="Personas reciclando basura de manera efectiva" />
+      </div>
+    </header>
+    <main class="content">
+      <h2 class="tips-heading">Consejos de reciclaje</h2>
+      <p class="tips-sub">Pequenas acciones que hacen una gran diferencia para el medio ambiente.</p>
+      <div class="tips-grid">
+        <article class="tip-card">
+          <span class="tip-icon" style="background:#dff5e9;color:#1b7a44;">♻</span>
+          <h3>Separa correctamente</h3>
+          <p>Divide tus residuos en organicos, inorganicos y peligrosos antes de llevarlos a un punto de reciclaje.</p>
+        </article>
+        <article class="tip-card">
+          <span class="tip-icon" style="background:#dceeff;color:#1a5fbf;">💧</span>
+          <h3>Lava los envases</h3>
+          <p>Enjuaga botellas y latas antes de reciclarlas. Los residuos de comida contaminan lotes enteros de material.
+          </p>
+        </article>
+        <article class="tip-card">
+          <span class="tip-icon" style="background:#fef0db;color:#a8620f;">📦</span>
+          <h3>Aplana el carton</h3>
+          <p>Aplana las cajas para reducir el volumen y facilitar el transporte y almacenamiento en los centros.</p>
+        </article>
+        <article class="tip-card">
+          <span class="tip-icon" style="background:#ede0ff;color:#6226c4;">🔋</span>
+          <h3>No mezcles pilas</h3>
+          <p>Las pilas y baterias son residuos peligrosos. Depositalas en puntos especiales, nunca en la basura comun.
+          </p>
+        </article>
+        <article class="tip-card">
+          <span class="tip-icon" style="background:#fde0e0;color:#b71c1c;">🛍</span>
+          <h3>Reduce las bolsas</h3>
+          <p>Usa bolsas reutilizables. Cada bolsa plastica tarda hasta 500 anos en degradarse en el medio ambiente.</p>
+        </article>
+        <article class="tip-card">
+          <span class="tip-icon" style="background:#d6f5f1;color:#117568;">🌱</span>
+          <h3>Composta lo organico</h3>
+          <p>Los restos de frutas y verduras puedes compostarlos en casa. Reduce residuos y obtienes abono natural.</p>
+        </article>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
