@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Editar Usuario</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <main class="container py-4">
+      <h1 class="mb-4">Editar Camion</h1>
+
+      <form id="formularioCamionEdit">
+        <input type="hidden" id="mongoId" />
+
+        <div class="mb-3">
+          <label for="Id" class="form-label">Id</label>
+          <input type="text" class="form-control" name="Id" id="Id" placeholder="Ejemplo: cam001" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="nombreUsuario" class="form-label">Numero de Placa</label>
+          <input type="text" class="form-control" name="placa" id="placa" placeholder="Ejemplo: CR111111" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="correo" class="form-label">Marca</label>
+          <input type="text" class="form-control" name="marca" id="marca" placeholder="Ingrese la marca" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Año</label>
+          <input type="text" class="form-control" name="anio" id="anio" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="contrasena" class="form-label">Ruta</label>
+          <input type="text" class="form-control" name="rutaId" id="rutaId" placeholder="Ejemplo: rut001" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="rolId" class="form-label">Conductor</label>
+          <input type="text" class="form-control" name="conductorId" id="conductorId" placeholder="Ejemplo: usr001" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <select class="form-select" name="estado" id="estado" required>
+            <option value="">Seleccione una opcion</option>
+            <option value="activo">activo</option>
+            <option value="inactivo">inactivo</option>
+            <option value="inactivo">en mantenimiento</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a href="./camiones.html" class="btn btn-danger">Cancelar</a>
+      </form>
+    </main>
+
+    <script>
+      $(document).ready(function () {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        $.get("http://localhost:3000/api/camiones/" + id, function (camion) {
+          $("#mongoId").val(camion._id);
+          $("#Id").val(camion.Id);
+          $("#placa").val(camion.placa);
+          $("#marca").val(camion.marca);
+          $("#anio").val(camion.anio);
+          $("#rutaId").val(camion.rutaId);
+          $("#conductorId").val(camion.conductorId);
+          $("#estado").val(camion.estado);
+
+        }).fail(function () {
+          alert("Error al cargar el camion");
+          window.location.href = "./camiones.html";
+        });
+
+        $("#formularioCamionEdit").submit(function (e) {
+          e.preventDefault();
+
+          let datos = {
+            Id: $("#Id").val(),
+            placa: $("#placa").val(),
+            marca: $("#marca").val(),
+            anio: $("#anio").val(),
+            rutaId: $("#rutaId").val(),
+            conductorId: $("#conductorId").val(),
+            estado: $("#estado").val(),
+          };
+
+          $.ajax({
+            type: "PUT",
+            url: "http://localhost:3000/api/camiones/" + id,
+            data: JSON.stringify(datos),
+            contentType: "application/json",
+            dataType: "json",
+            success: function () {
+              alert("Camion actualizado");
+              window.location.href = "./camiones.html";
+            },
+            error: function () {
+              alert("Error al actualizar los datos");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

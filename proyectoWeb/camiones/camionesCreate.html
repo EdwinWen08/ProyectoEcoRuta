@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Crear Camion</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <main class="container py-4">
+        <h1 class="mb-4">Registrar Camion</h1>
+
+        <form id="formularioCamion">
+                    <div class="mb-3">
+          <label for="Id" class="form-label">Id</label>
+          <input type="text" class="form-control" name="Id" id="Id" placeholder="Ejemplo: cam001" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="numeroPlaca" class="form-label">Numero de Placa</label>
+          <input type="text" class="form-control" name="placa" id="placa" placeholder="Ejemplo: CR111111" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="marca" class="form-label">Marca</label>
+          <input type="text" class="form-control" name="marca" id="marca" placeholder="Ingrese la marca" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="anio" class="form-label">Año</label>
+          <input type="text" class="form-control" name="anio" id="anio" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="ruta" class="form-label">Ruta</label>
+          <input type="text" class="form-control" name="rutaId" id="rutaId" placeholder="Ejemplo: rut001" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="conductorId" class="form-label">Conductor</label>
+          <input type="text" class="form-control" name="conductorId" id="conductorId" placeholder="Ejemplo: usr001" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <select class="form-select" name="estado" id="estado" required>
+            <option value="">Seleccione una opcion</option>
+            <option value="activo">activo</option>
+            <option value="inactivo">inactivo</option>
+            <option value="inactivo">en mantenimiento</option>
+          </select>
+        </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+        </form>
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            $("#formularioCamion").submit(function (e) {
+                e.preventDefault();
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/api/camiones/",
+                    data: JSON.stringify((function () {
+
+                        let objetodatos = {
+                            Id: $("#Id").val(),
+                            placa: $("#placa").val(),
+                            marca: $("#marca").val(),
+                            anio: $("#anio").val(),
+                            rutaId: $("#rutaId").val(),
+                            conductorId: $("#conductorId").val(),
+                            estado: $("#estado").val(),
+                        };
+                        console.log(objetodatos);
+                        return objetodatos;
+                        
+                    })()),
+                    
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function () {
+                        alert("Almacenando datos");
+                        window.location.href = "./camiones.html";
+                    },
+                    error: function () {
+                        alert("Error al guardar los datos");
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

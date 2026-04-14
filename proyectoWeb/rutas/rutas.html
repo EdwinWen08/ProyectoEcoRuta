@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EcoRuta | Rutas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/indexStyles.css" />
+
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="collections-bar">
+            <div class="collections-inner">
+                <div class="col-group col-group-brand" id="inicio">
+                    <span class="col-group-label"><span class="dot dot-green"></span> INICIO</span>
+                    <div class="col-cards">
+                        <a href="../../index.html" class="col-card col-card-brand">EcoRuta</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="acceso">
+                    <span class="col-group-label"><span class="dot dot-green"></span> ACCESO</span>
+                    <div class="col-cards">
+                        <a href="../roles/roles.html" class="col-card">Roles</a>
+                        <a href="../usuarios/usuarios.html" class="col-card">Usuarios</a>
+                        <a href="../configuraciones/configuraciones.html" class="col-card">Configuraciones</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="reciclaje">
+                    <span class="col-group-label"><span class="dot dot-blue"></span> RECICLAJE</span>
+                    <div class="col-cards">
+                        <a href="../puntosReciclaje/puntosReciclaje.html" class="col-card">Puntos</a>
+                        <a href="../materiales/materiales.html" class="col-card">Materiales</a>
+                        <a href="../favoritos/favoritos.html" class="col-card">Favoritos</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="logistica">
+                    <span class="col-group-label"><span class="dot dot-orange"></span> LOGISTICA</span>
+                    <div class="col-cards">
+                        <a href="../rutas/rutas.html" class="col-card">Rutas</a>
+                        <a href="../camiones/camiones.html" class="col-card">Camiones</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="comunicacion">
+                    <span class="col-group-label"><span class="dot dot-red"></span> COMUNICACION</span>
+                    <div class="col-cards">
+                        <a href="../notificaciones/notificaciones.html" class="col-card">Notificaciones</a>
+                        <a href="../eventos/eventos.html" class="col-card">Eventos</a>
+                        <a href="../comentarios/comentarios.html" class="col-card">Comentarios</a>
+                    </div>
+                </div>
+
+                <div class="col-group" id="reportes">
+                    <span class="col-group-label"><span class="dot dot-purple"></span> REPORTES</span>
+                    <div class="col-cards">
+                        <a href="../reportes/reportes.html" class="col-card">Reportes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page">
+        <header class="banner">
+            <div class="banner-left">
+                <span class="banner-badge">COLECCION</span>
+                <h1 class="banner-title">RUTAS</h1>
+            </div>
+            <div class="banner-image-wrap">
+                <img class="banner-image"
+                    src="https://thumbs.dreamstime.com/b/mapa-con-el-pasador-de-ubicaci%C3%B3n-y-la-navegaci%C3%B3n-ruta-en-estilo-vector-plano-para-gu%C3%ADa-desplazamiento-direcci%C3%B3n-ilustraci%C3%B3n-390779358.jpg"
+                    alt="Rutas" />
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="data-panel">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                    <h2 class="data-title mb-0">Lista de Rutas</h2>
+                    <a href="rutasCreate.html" class="btn btn-success">Agregar ruta</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre de la Ruta</th>
+                                <th scope="col">Puntos</th>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Ruta</th>
+                                <th scope="col">Hora de Salida</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablademuestradedatos"></tbody>
+                    </table>
+                </div>
+                <p id="estadoCarga" class="estado-msg"></p>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            listardatos();
+        });
+
+        function listardatos() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3000/api/rutas/",
+                dataType: "json",
+                success: function (response) {
+                    cargadatos(response);
+                },
+                error: function (error) {
+                    alert("Error al cargar los datos");
+                },
+            });
+        }
+
+        function cargadatos(objeto) {
+            const $tablademuestradedatos = $("#tablademuestradedatos");
+
+            $tablademuestradedatos.empty();
+
+            objeto.forEach((elementosdelarreglo) => {
+                let filadeDatos = `<tr class="">
+                    <td>${elementosdelarreglo.Id}</td>
+                    <td>${elementosdelarreglo.nombreRuta}</td>
+                    <td>${elementosdelarreglo.puntos}</td>
+                    <td>${elementosdelarreglo.dia}</td>
+                    <td>${elementosdelarreglo.horaSalida}</td>
+                    <td>${elementosdelarreglo.estado}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="window.location.href='./rutasEdit.html?id=${elementosdelarreglo._id}'">Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarDato('${elementosdelarreglo._id}')">Eliminar</button>
+                    </td>
+                </tr>`;
+
+                $tablademuestradedatos.append(filadeDatos);
+            });
+        }
+
+        function eliminarDato(id) {
+            if (confirm("¿Estás seguro que deseas eliminar esta ruta?")) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "http://localhost:3000/api/rutas/" + id,
+                    success: function () {
+                        alert("Ruta eliminada");
+                        listardatos();
+                    },
+                    error: function (error) {
+                        alert("Error al eliminar");
+                    },
+                });
+            }
+        }
+    </script>
+</body>
+</html>
