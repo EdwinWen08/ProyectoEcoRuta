@@ -65,7 +65,11 @@
                 $("#nombreRol").val(rol.nombreRol);
                 $("#descripcion").val(rol.descripcion);
                 $("#estado").val(rol.estado);
-                $("#fechaRegistro").val(rol.fechaRegistro.split("T")[0]);
+                if (rol.fechaRegistro) {
+                    const fecha = new Date(rol.fechaRegistro);
+                    const fechaFormateada = fecha.toISOString().split("T")[0];
+                    $("#fechaRegistro").val(fechaFormateada);
+                }
             }).fail(function () {
                 alert("Error al cargar el rol");
                 window.location.href = "./roles.html";

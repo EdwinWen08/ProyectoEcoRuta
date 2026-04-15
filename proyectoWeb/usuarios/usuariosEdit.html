@@ -83,7 +83,11 @@
           $("#contrasena").val(usuario.contrasena);
           $("#rolId").val(usuario.rolId);
           $("#estado").val(usuario.estado);
-          $("#fechaRegistro").val(usuario.fechaRegistro.split("T")[0]);
+          if (usuario.fechaRegistro) {
+            const fecha = new Date(usuario.fechaRegistro);
+            const fechaFormateada = fecha.toISOString().split("T")[0];
+            $("#fechaRegistro").val(fechaFormateada);
+          }
 
         }).fail(function () {
           alert("Error al cargar el usuario");

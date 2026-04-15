@@ -138,6 +138,12 @@
             $tablademuestradedatos.empty();
 
             objeto.forEach((elementosdelarreglo) => {
+                let fechaFormateada = "";
+
+                if (elementosdelarreglo.fechaRegistro) {
+                    fechaFormateada = new Date(elementosdelarreglo.fechaRegistro).toLocaleDateString("es-CR");
+                }
+
                 let filadeDatos = `<tr class="">
                     <td>${elementosdelarreglo.Id}</td>
                     <td>${elementosdelarreglo.nombreUsuario}</td>
@@ -145,7 +151,7 @@
                     <td>${elementosdelarreglo.telefono}</td>
                     <td>${elementosdelarreglo.rolId}</td>
                     <td>${elementosdelarreglo.estado}</td>
-                    <td>${elementosdelarreglo.fechaRegistro}</td>
+                    <td>${fechaFormateada}</td>
                     <td>
                         <button type="button" class="btn btn-warning btn-sm" onclick="window.location.href='./usuariosEdit.html?id=${elementosdelarreglo._id}'">Editar</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="eliminarDato('${elementosdelarreglo._id}')">Eliminar</button>

@@ -24,7 +24,7 @@
                 <div class="col-group" id="acceso">
                     <span class="col-group-label"><span class="dot dot-green"></span> ACCESO</span>
                     <div class="col-cards">
-                        <a href="./roles.html" class="col-card">Roles</a>
+                        <a href="../roles/roles.html" class="col-card">Roles</a>
                         <a href="../usuarios/usuarios.html" class="col-card">Usuarios</a>
                         <a href="../configuraciones/configuraciones.html" class="col-card">Configuraciones</a>
                     </div>
@@ -33,33 +33,33 @@
                 <div class="col-group" id="reciclaje">
                     <span class="col-group-label"><span class="dot dot-blue"></span> RECICLAJE</span>
                     <div class="col-cards">
-                        <a href="#" class="col-card">Puntos</a>
-                        <a href="#" class="col-card">Materiales</a>
-                        <a href="#" class="col-card">Favoritos</a>
+                        <a href="../puntosReciclaje/puntosReciclaje.html" class="col-card">Puntos</a>
+                        <a href="../materiales/materiales.html" class="col-card">Materiales</a>
+                        <a href="../favoritos/favoritos.html" class="col-card">Favoritos</a>
                     </div>
                 </div>
 
                 <div class="col-group" id="logistica">
                     <span class="col-group-label"><span class="dot dot-orange"></span> LOGISTICA</span>
                     <div class="col-cards">
-                        <a href="#" class="col-card">Rutas</a>
-                        <a href="#" class="col-card">Camiones</a>
+                        <a href="../rutas/rutas.html" class="col-card">Rutas</a>
+                        <a href="../camiones/camiones.html" class="col-card">Camiones</a>
                     </div>
                 </div>
 
                 <div class="col-group" id="comunicacion">
                     <span class="col-group-label"><span class="dot dot-red"></span> COMUNICACION</span>
                     <div class="col-cards">
-                        <a href="#" class="col-card">Notificaciones</a>
-                        <a href="#" class="col-card">Eventos</a>
-                        <a href="#" class="col-card">Comentarios</a>
+                        <a href="../notificaciones/notificaciones.html" class="col-card">Notificaciones</a>
+                        <a href="../eventos/eventos.html" class="col-card">Eventos</a>
+                        <a href="../comentarios/comentarios.html" class="col-card">Comentarios</a>
                     </div>
                 </div>
 
                 <div class="col-group" id="reportes">
                     <span class="col-group-label"><span class="dot dot-purple"></span> REPORTES</span>
                     <div class="col-cards">
-                        <a href="#" class="col-card">Reportes</a>
+                        <a href="../reportes/reportes.html" class="col-card">Reportes</a>
                     </div>
                 </div>
             </div>
@@ -135,12 +135,18 @@
             $tablademuestradedatos.empty();
 
             objeto.forEach((elementosdelarreglo) => {
+                let fechaFormateada = "";
+
+                if (elementosdelarreglo.fechaRegistro) {
+                    fechaFormateada = new Date(elementosdelarreglo.fechaRegistro).toLocaleDateString("es-CR");
+                }
+
                 let filadeDatos = `<tr class="">
                     <td>${elementosdelarreglo.Id}</td>
                     <td>${elementosdelarreglo.nombreRol}</td>
                     <td>${elementosdelarreglo.descripcion}</td>
                     <td>${elementosdelarreglo.estado}</td>
-                    <td>${elementosdelarreglo.fechaRegistro}</td>
+                    <td>${fechaFormateada}</td>
                     <td>
                         <button type="button" class="btn btn-warning btn-sm" onclick="window.location.href='./rolesEdit.html?id=${elementosdelarreglo._id}'">Editar</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="eliminarDato('${elementosdelarreglo._id}')">Eliminar</button>
